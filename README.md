@@ -56,7 +56,7 @@ docker run --rm -it -p 7000:7000 -p 9090:9090 --name password-validation passwor
 
 #### Response
 
-- status se senha tem formato válido
+- status informando se formato da senha é válido
 
 ##### Body
 
@@ -105,11 +105,7 @@ curl -v -X POST 'http://localhost:7000/users/validate-password' \
 
 ### Postman
 
-Esta disponibilizada uma coleção do POSTMAN para facilitar os testes da aplicação: \
-
-```
-Password-validation.postman_collection.json
-```
+Existe uma [coleção](Password-validation.postman_collection.json) do POSTMAN para facilitar os testes da aplicação.
 
 ### Teste unitário e componente
 
