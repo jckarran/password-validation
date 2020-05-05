@@ -32,7 +32,7 @@ dependencies {
 
 jar {
     enabled(true)
-    baseName("backend-challege")
+    baseName("password-validation")
     version(getProject().getVersion())
 }
 
@@ -52,10 +52,25 @@ jacoco {
     toolVersion = "0.8.5"
 }
 
+def ignorePackagesInJacocoReport = { classDirectories ->
+    files(classDirectories.files.collect {
+        fileTree( dir: it,
+                excludes: [
+                        'password/validation/application/metrics/**',
+                        'password/validation/application/model/**',
+                        'password/validation/application/module/**'
+                ])
+    })
+}
+
 jacocoTestReport {
     reports {
         html.enabled = true
         html.destination = file("$buildDir/reports/coverage")
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(ignorePackagesInJacocoReport(classDirectories))
     }
 }
 
@@ -66,6 +81,10 @@ jacocoTestCoverageVerification {
                 minimum = "0.9".toBigDecimal()
             }
         }
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(ignorePackagesInJacocoReport(classDirectories))
     }
 }
 

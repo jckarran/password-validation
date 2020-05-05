@@ -1,4 +1,4 @@
-#Backend Challenge
+#Password validation
 
 ## Tecnologias
 
@@ -35,7 +35,7 @@ Para construir o container docker
 Para rodar o container
 
 ```bash
-docker run --rm -it -p 7000:7000 -p 9090:9090 --name backend-challenge backend-challenge:0.3
+docker run --rm -it -p 7000:7000 -p 9090:9090 --name password-validation password-validation:0.3
 ```
 
 ## API
@@ -108,7 +108,7 @@ curl -v -X POST 'http://localhost:7000/users/validate-password' \
 Esta disponibilizada uma coleção do POSTMAN para facilitar os testes da aplicação: \
 
 ```
-Backend-challenge.postman_collection.json
+Password-validation.postman_collection.json
 ```
 
 ### Teste unitário e componente

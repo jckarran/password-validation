@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: Backend Challenge
-  description: Backend Challenge API
+  title: Password Validation
+  description: Password Validation API
   version: "1.0.0"
 paths:
   /users/validate-password:
