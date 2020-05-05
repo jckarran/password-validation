@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: Backend Challenge
+  description: Backend Challenge API
+  version: "1.0.0"
+paths:
+  /users/validate-password:
+    post:
+      summary: Validate password
+      parameters:
+        - in: header
+          name: transaction-id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Invalid input
+components:
+  schemas:
+    UserRequest:
+      type: object
+      properties:
+        password:
+          type: string
+    UserResponse:
+      type: object
+      properties:
+        status:
+          type: string

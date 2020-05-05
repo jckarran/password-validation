@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "1b58e744-94a1-48a7-955c-e6c41f6e92e8",
+		"name": "Backend-challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Backend-challengeOk",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cfd3779-af44-4ec1-82e6-8964f837424f",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(true);\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "transaction-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\":\"T3stes^baCkend\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users/validate-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users",
+						"validate-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Backend-challengeLowerCaseOnly",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b72c2f6b-9ecf-4403-9e74-a761d6db9914",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(false);\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\":\"t3stes^backend\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users/validate-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users",
+						"validate-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Backend-challengeNoEspecialCharacter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6ddab7aa-72fd-4048-bcba-90a3006bc5dc",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(false);\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\":\"T3stesbaCkend\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users/validate-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users",
+						"validate-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Backend-challengeLessThan9Characters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d29c73c-bbe5-48b8-b611-374587ac4f55",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(false);\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\":\"T3st%es\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users/validate-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users",
+						"validate-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Backend-challengeNoBody",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "686c8e99-7095-40a0-8a13-7aac097a458e",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "transaction-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users/validate-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users",
+						"validate-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Backend-challengeInvalidJson",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73bda9c4-0114-4122-8532-ed48cc56f612",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "transaction-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\":\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users/validate-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users",
+						"validate-password"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
